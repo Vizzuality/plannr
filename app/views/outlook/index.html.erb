@@ -20,15 +20,7 @@
       <tr>
         <td><%= project.name %></td>
         <% @range_of_months.each do |dt| %>
-          <td class="
-            <% if project.end_date >= dt %>
-              finished
-            <% elsif project.start_date <= dt %>
-              underway
-            <% else %>
-              not-started
-            <% end %>">
-          </td>
+          <td class="<%= project.status_for dt %>" />
         <% end %>
       </tr>
     <% end %>
