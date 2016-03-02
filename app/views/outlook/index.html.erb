@@ -10,7 +10,7 @@
     <tr>
       <th>Name</th>
       <% @range_of_months.each do |r| %>
-        <th><%= r %></th>
+        <th><%= r.strftime("%b/%y") %></th>
       <% end %>
     </tr>
   </thead>
@@ -19,12 +19,11 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <% @range_of_months.each do |r| %>
+        <% @range_of_months.each do |dt| %>
           <td class="
-            <% parsed = Date.parse(r) %>
-            <% if project.end_date >= parsed %>
+            <% if project.end_date >= dt %>
               finished
-            <% elsif project.start_date <= parsed %>
+            <% elsif project.start_date <= dt %>
               underway
             <% else %>
               not-started

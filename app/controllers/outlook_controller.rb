@@ -17,7 +17,7 @@ class OutlookController < ApplicationController
       mo_end = (end_date.year == y) ? end_date.month : 12
 
       (mo_start..mo_end).each do |m|
-        range << "#{m}/#{y}"
+        range << Date.parse("#{m}/#{y}")
       end
     end
     range
