@@ -3,6 +3,8 @@
   <%= @end_date %> outlook
 </h1>
 
+<%= link_to "Projects", projects_path %>
+
 <table>
   <thead>
     <tr>
@@ -20,9 +22,9 @@
         <% @range_of_months.each do |r| %>
           <td class="
             <% parsed = Date.parse(r) %>
-            <% if project.end_date < parsed %>
+            <% if project.end_date >= parsed %>
               finished
-            <% elsif project.start_date >= parsed %>
+            <% elsif project.start_date <= parsed %>
               underway
             <% else %>
               not-started
@@ -33,7 +35,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
