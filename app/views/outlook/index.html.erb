@@ -30,6 +30,14 @@
                    title="<%= m.name.presence || m.milestone_humanize %> - <%= m.release_date %>"></span>
               <% end %>
             <% end %>
+            <% if invoices = project.invoices.
+                where(planned_date: dt..dt.end_of_month) %>
+              <% invoices.each do |i| %>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"
+                   data-toggle="tooltip"
+                   title="<%= i.name %> - <%= number_to_currency(i.value) %> on <%= i.planned_date %>"></span>
+              <% end %>
+            <% end %>
           </td>
         <% end %>
       </tr>
