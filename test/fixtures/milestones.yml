@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 1
+  milestone: 1
+  release_date: 2016-03-03
+  name: MyString
+
+two:
+  project_id: 1
+  milestone: 1
+  release_date: 2016-03-03
+  name: MyString

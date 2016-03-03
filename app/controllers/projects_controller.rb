@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order(:name)
+    @projects = Project.order(:name).includes(:milestones)
   end
 
   # GET /projects/1
