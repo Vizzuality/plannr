@@ -1,16 +1,17 @@
 <h1>
   <%= @start_date %> to
-  <%= @end_date %> outlook
+  <%= @end_date %>
 </h1>
 
-<%= link_to "Projects", projects_path %>
-
-<table>
+<table class="table table-bordered table-condensed">
   <thead>
     <tr>
       <th>Name</th>
+      <% today = Date.today %>
       <% @range_of_months.each do |r| %>
-        <th><%= r.strftime("%b/%y") %></th>
+        <th class="<%= "current" if r.month == today.month && r.year == today.year %>">
+          <%= r.strftime("%b/%y") %>
+        </th>
       <% end %>
     </tr>
   </thead>
