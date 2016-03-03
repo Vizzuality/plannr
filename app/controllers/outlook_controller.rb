@@ -2,7 +2,7 @@ class OutlookController < ApplicationController
 
   def index
     @start_date = 3.months.ago.beginning_of_month.to_date
-    @end_date = 1.year.from_now.beginning_of_month.to_date
+    @end_date = 1.year.from_now.end_of_month.to_date
     @range_of_months = range_of_months(@start_date, @end_date)
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil)
