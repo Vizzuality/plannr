@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 
   has_many :milestones
+  has_many :invoices
 
   def status_for date
     return nil unless start_date

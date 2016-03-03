@@ -5,7 +5,8 @@ ready = function() {
   $('.datepicker').datepicker({
     format: 'dd-mm-yyyy'
   });
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

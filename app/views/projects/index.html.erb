@@ -13,6 +13,7 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Milestones</th>
+      <th>Invoices</th>
       <th></th>
     </tr>
   </thead>
@@ -26,14 +27,16 @@
         <td><%= l project.end_date if project.end_date %></td>
         <td>
           <% project.milestones.each do |m| %>
-            <span data-toggle="tooltip" title="<%= m.release_date %>">
-              <%= m.name.presence || m.milestone_humanize %>
-            </span>
+            <%= tooltiped_span(m.release_date,
+                               m.name.presence || m.milestone_humanize) %>
           <% end %>
-          <%= link_to new_project_milestone_path(project) do %>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"
-              data-toggle="tooltip" title="Add new milestone"></span>
+          <%= add_resource("milestone", new_project_milestone_path(project)) %>
+        </td>
+        <td>
+          <% project.invoices.each do |i| %>
+            <%= display_invoice(i) %>
           <% end %>
+          <%= add_resource("invoice", new_project_invoice_path(project)) %>
         </td>
         <td>
           <%= link_to 'Show', project %>

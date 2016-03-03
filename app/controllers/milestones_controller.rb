@@ -15,7 +15,6 @@ class MilestonesController < ApplicationController
   # POST /milestones
   # POST /milestones.json
   def create
-    @project = Project.find(params[:project_id])
     @milestone = @project.milestones.build(milestone_params)
 
     respond_to do |format|
