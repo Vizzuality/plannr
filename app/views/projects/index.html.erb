@@ -27,7 +27,7 @@
         <td>
           <% project.milestones.each do |m| %>
             <span data-toggle="tooltip" title="<%= m.release_date %>">
-              <%= m.milestone_humanize %>
+              <%= m.name || m.milestone_humanize %>
             </span>
           <% end %>
           <%= link_to new_project_milestone_path(project) do %>
