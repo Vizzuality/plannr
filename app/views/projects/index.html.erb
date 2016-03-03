@@ -20,8 +20,8 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.budget %></td>
-        <td><%= project.start_date %></td>
-        <td><%= project.end_date %></td>
+        <td><%= l project.start_date if project.start_date %></td>
+        <td><%= l project.end_date if project.end_date %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
