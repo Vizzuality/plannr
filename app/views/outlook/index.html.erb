@@ -25,9 +25,9 @@
             <% if milestones = project.milestones.
                 where(release_date: dt..dt.end_of_month) %>
               <% milestones.each do |m| %>
-                <span data-toggle="tooltip" title="<%= m.release_date %>">
-                  <%= m.name.presence || m.milestone_humanize %>
-                </span>
+                <span class="glyphicon glyphicon-time" aria-hidden="true"
+                   data-toggle="tooltip"
+                   title="<%= m.name.presence || m.milestone_humanize %> - <%= m.release_date %>"></span>
               <% end %>
             <% end %>
           </td>
