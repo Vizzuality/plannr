@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Budget</th>
       <% today = Date.today %>
       <% @range_of_months.each do |r| %>
         <th class="<%= "current" if r.month == today.month && r.year == today.year %>">
@@ -20,6 +21,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
+        <td><%= number_to_currency(project.budget) %></td>
         <% @range_of_months.each do |dt| %>
           <td class="<%= project.status_for dt %>">
             <% if milestones = project.milestones.
