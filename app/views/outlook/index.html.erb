@@ -21,7 +21,16 @@
       <tr>
         <td><%= project.name %></td>
         <% @range_of_months.each do |dt| %>
-          <td class="<%= project.status_for dt %>" />
+          <td class="<%= project.status_for dt %>">
+            <% if milestones = project.milestones.
+                where(release_date: dt..dt.end_of_month) %>
+              <% milestones.each do |m| %>
+                <span data-toggle="tooltip" title="<%= m.release_date %>">
+                  <%= m.milestone_humanize %>
+                </span>
+              <% end %>
+            <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
