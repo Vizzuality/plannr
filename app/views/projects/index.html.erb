@@ -2,12 +2,12 @@
 
 <h1>Listing Projects</h1>
 
-<%= link_to 'New Project', new_project_path, class: "btn btn-default",
-  role: "button" %>
-<br>
+<p><%= link_to 'New Project', new_project_path, class: "btn btn-default",
+  role: "button" %></p>
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>Budget</th>
       <th>Start date</th>
@@ -19,8 +19,11 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
+    <% total = 0.0 %>
+    <% @projects.each_with_index do |project, i| %>
+      <% total += project.budget if project.budget %>
       <tr>
+        <td><%= i+1 %></td>
         <td><%= project.name %></td>
         <td><%= number_to_currency(project.budget) %></td>
         <td><%= l project.start_date if project.start_date %></td>
@@ -47,6 +50,11 @@
         </td>
       </tr>
     <% end %>
+    <tr>
+      <th colspan=2>Total</th>
+      <td><%= number_to_currency total %></td>
+      <td colspan=6></td>
+    </tr>
   </tbody>
 </table>
 
