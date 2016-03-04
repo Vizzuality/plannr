@@ -15,6 +15,7 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/1/edit
   def edit
+    @project = @milestone.project
   end
 
   # POST /milestones
