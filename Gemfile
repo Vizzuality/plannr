@@ -53,3 +53,6 @@ end
 
 gem 'dotenv-rails'
 gem "enumerate_it"
+
+# enables logs in heroku
+gem 'rails_12factor'
