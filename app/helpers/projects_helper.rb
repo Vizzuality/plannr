@@ -13,22 +13,49 @@ module ProjectsHelper
     end
   end
 
-  def display_invoice invoice
-    txt = "#{number_to_currency(invoice.value)}"
-    txt += if invoice.date_sent
-        " sent on #{invoice.date_sent}"
-      else
-        " to send on #{invoice.planned_date}"
+  def milestones_for project
+    content = content_tag :ul do
+      project.milestones.each do |m|
+        concat content_tag(:li, milestone_summary(m))
       end
-    txt += tag(:br)
-    txt += link_to("Edit", edit_project_invoice_path(invoice.project, invoice),
-                   role: "button", class: "btn-sm btn-default")
-
-    content_tag(:a, title: invoice.name, class: "btn-sm btn-primary",
-                tabindex: 0, role: "button",
-                data: { toggle: "popover", content: txt, html: true,
-                trigger: "focus" }) do
-      invoice.name
     end
+    content_tag(:a, title: "Project Milestones", class: "btn-sm btn-primary",
+                tabindex: 0, role: "button",
+                data: { toggle: "popover", content: content, html: true,
+                trigger: "focus" }) do
+      project.milestones.count.to_s
+    end
+  end
+
+  def milestone_summary milestone
+    txt = [milestone.name.presence || milestone.milestone_humanize,
+           milestone.release_date,
+           link_to("Edit", edit_milestone_path(milestone))]
+    txt.join(" ")
+  end
+
+  def invoices_for project
+    content = content_tag :ul do
+      project.invoices.each do |i|
+        concat content_tag(:li, invoice_summary(i))
+      end
+    end
+    content_tag(:a, title: "Project Invoices", class: "btn-sm btn-primary",
+                tabindex: 0, role: "button",
+                data: { toggle: "popover", content: content, html: true,
+                trigger: "focus" }) do
+      project.invoices.count.to_s
+    end
+  end
+
+  def invoice_summary invoice
+    txt = [number_to_currency(invoice.value)]
+    txt << if invoice.date_sent
+        "sent on #{invoice.date_sent}"
+      else
+        "to send on #{invoice.planned_date}"
+      end
+    txt << link_to("Edit", edit_project_invoice_path(invoice.project, invoice))
+    txt.join(" ")
   end
 end

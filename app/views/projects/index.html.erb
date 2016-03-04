@@ -29,16 +29,11 @@
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>
         <td>
-          <% project.milestones.each do |m| %>
-            <%= tooltiped_span(m.release_date,
-                               m.name.presence || m.milestone_humanize) %>
-          <% end %>
+          <%= milestones_for project if project.milestones.any? %>
           <%= add_resource("milestone", new_project_milestone_path(project)) %>
         </td>
         <td>
-          <% project.invoices.each do |i| %>
-            <%= display_invoice(i) %>
-          <% end %>
+          <%= invoices_for(project) if project.invoices.any? %>
           <%= add_resource("invoice", new_project_invoice_path(project)) %>
         </td>
         <td>
