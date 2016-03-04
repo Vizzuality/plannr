@@ -1,7 +1,12 @@
 class MilestonesController < ApplicationController
-  before_action :set_project, only: [:new, :edit, :create]
+  before_action :set_project, only: [:new, :create]
   before_action :set_milestone, only: [:edit, :update, :destroy]
 
+
+  # GET /milestones
+  def index
+    @milestones = Milestone.joins(:project).where(projects: {archived: false})
+  end
 
   # GET /milestones/new
   def new
