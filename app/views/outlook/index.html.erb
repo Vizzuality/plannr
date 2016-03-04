@@ -30,7 +30,7 @@
               <% milestones.each do |m| %>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"
                    data-toggle="tooltip"
-                   title="<%= m.name.presence || m.milestone_humanize %> - <%= m.release_date %>"></span>
+                   title="<%= m.name.presence || m.milestone_humanize %> - <%= l m.release_date %>"></span>
               <% end %>
             <% end %>
             <% if invoices = project.invoices.
@@ -38,7 +38,7 @@
               <% invoices.each do |i| %>
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"
                    data-toggle="tooltip"
-                   title="<%= i.name %> - <%= number_to_currency(i.value) %> on <%= i.planned_date %>"></span>
+                   title="<%= i.name %> - <%= number_to_currency(i.value) %> on <%= l i.planned_date %>"></span>
               <% end %>
             <% end %>
           </td>
