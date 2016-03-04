@@ -1,6 +1,6 @@
 <h1>
-  <%= l @start_date %> to
-  <%= l @end_date %>
+  <%= l @interval.first %> to
+  <%= l @interval.last %>
 </h1>
 
 <table class="table table-bordered table-condensed">
@@ -22,8 +22,9 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= number_to_currency(project.budget) %></td>
+        <% my_val = @per_months.select{|t| t[0] == project.id}.first[1] %>
         <% @range_of_months.each do |dt| %>
-          <td class="<%= project.status_for dt %>">
+          <td style="<%= "background-color: rgba(144,238,144, #{my_val});" if project.status_for(dt) %>">
             <% if milestones = project.milestones.
                 where(release_date: dt..dt.end_of_month) %>
               <% milestones.each do |m| %>
