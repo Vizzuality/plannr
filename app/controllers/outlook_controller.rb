@@ -35,7 +35,7 @@ class OutlookController < ApplicationController
     max = vals.map{|g| g[1]}.max
     min = vals.map{|g| g[1]}.min
     vals.each do |a|
-      a[1] = (((1-0.1)-(a[1]-min))/(max-min))+0.1
+      a[1] = (((1-0.1)*(a[1]-min))/(max-min))+0.1
     end
     vals
   end
