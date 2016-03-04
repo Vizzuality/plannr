@@ -29,7 +29,7 @@ module ProjectsHelper
 
   def milestone_summary milestone
     txt = [milestone.name.presence || milestone.milestone_humanize,
-           milestone.release_date,
+           l(milestone.release_date),
            link_to("Edit", edit_milestone_path(milestone))]
     txt.join(" ")
   end
@@ -51,9 +51,9 @@ module ProjectsHelper
   def invoice_summary invoice
     txt = [number_to_currency(invoice.value)]
     txt << if invoice.date_sent
-        "sent on #{invoice.date_sent}"
+        "sent on #{l(invoice.date_sent)}"
       else
-        "to send on #{invoice.planned_date}"
+        "to send on #{l(invoice.planned_date)}"
       end
     txt << link_to("Edit", edit_project_invoice_path(invoice.project, invoice))
     txt.join(" ")
