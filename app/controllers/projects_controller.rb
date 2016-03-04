@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order(:name).includes([:milestones, :invoices])
+    @projects = Project.order(:name).includes([:milestones, :invoices]).
+      live
   end
 
   # GET /projects/1
@@ -51,6 +52,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /projects/1/archive
+  def archive
+    @project.update_attribute(:archived, archive_params)
+    if archive_params == "true"
+      redirect_to projects_url
+    else
+      redirect_to archived_projects_url
+    end
+  end
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
@@ -70,5 +81,9 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :budget, :start_date, :end_date)
+    end
+
+    def archive_params
+      params.require(:archived)
     end
 end

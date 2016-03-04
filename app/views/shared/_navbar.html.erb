@@ -13,10 +13,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="<%= "active" if controller_name == "projects" %>">
-          <%= link_to "Projects", projects_path %>
+          <%= link_to "Live projects", projects_path %>
         </li>
         <li class="<%= "active" if controller_name == "outlook" %>">
           <%= link_to "Outlook", outlook_path %>
+        </li>
+        <li class="<%= "active" if controller_name == "archived_projects" %>">
+          <%= link_to "Archived projects", archived_projects_path %>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

@@ -3,6 +3,9 @@ class Project < ActiveRecord::Base
   has_many :milestones
   has_many :invoices
 
+  scope :archived, -> { where(archived: true) }
+  scope :live, -> { where(archived: false) }
+
   def status_for date
     return nil unless start_date
     return "underway" if !end_date && start_date <= date

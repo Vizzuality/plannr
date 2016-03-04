@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<h1>Archived Projects</h1>
 
-<p><%= link_to 'New Project', new_project_path, class: "btn btn-default",
-  role: "button" %></p>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -33,16 +31,14 @@
             <%= tooltiped_span(m.release_date,
                                m.name.presence || m.milestone_humanize) %>
           <% end %>
-          <%= add_resource("milestone", new_project_milestone_path(project)) %>
         </td>
         <td>
           <% project.invoices.each do |i| %>
             <%= display_invoice(i) %>
           <% end %>
-          <%= add_resource("invoice", new_project_invoice_path(project)) %>
         </td>
         <td>
-          <%= link_to 'Archive', archive_project_path(project, archived: true),
+          <%= link_to 'Unarchive', archive_project_path(project, archived: false),
             method: :patch %>
           |
           <%= link_to 'Show', project %>
