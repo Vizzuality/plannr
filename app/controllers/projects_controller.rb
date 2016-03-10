@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
+  before_action :set_project_managers, only: [:new, :edit]
 
   # GET /projects
   # GET /projects.json
@@ -78,9 +79,14 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def set_project_managers
+      @project_managers = ProjectManager.order(:name)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :budget, :start_date, :end_date)
+      params.require(:project).permit(:name, :budget, :start_date, :end_date,
+                                      :project_manager_id)
     end
 
     def archive_params

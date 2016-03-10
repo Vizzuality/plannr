@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
 
   has_many :milestones
   has_many :invoices
+  belongs_to :project_manager
 
   scope :archived, -> { where(archived: true) }
   scope :live, -> { where(archived: false) }

@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>PM</th>
       <th>Budget</th>
       <% today = Date.today %>
       <% @range_of_months.each do |r| %>
@@ -21,6 +22,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
+        <td><%= project.project_manager.try(:name) %></td>
         <td><%= number_to_currency(project.budget) %></td>
         <% my_val = @per_months.select{|t| t[0] == project.id}.first[1] %>
         <% @range_of_months.each do |dt| %>

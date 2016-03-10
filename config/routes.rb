@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       patch :archive
     end
   end
-
   resources :milestones, only: [:edit, :index, :destroy]
+  resources :project_managers, except: [:show]
 
   get 'archived_projects', to: 'archived_projects#index'
   get 'outlook', to: 'outlook#index'
