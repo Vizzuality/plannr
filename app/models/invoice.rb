@@ -1,3 +1,3 @@
-class Invoice < ActiveRecord::Base
+class Invoice < ApplicationRecord
   belongs_to :project
 end
