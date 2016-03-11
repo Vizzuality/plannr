@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order(:name).includes([:milestones, :invoices]).
+    @projects = Project.order(:name).
+      includes([:milestones, :invoices, :project_manager]).
       live
   end
 
