@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :basic_http_authentication
+  before_action :basic_http_authentication
 
   def basic_http_authentication
     return unless ["production", "staging"].include?(Rails.env)
