@@ -5,6 +5,7 @@ class Milestones < EnumerateIt::Base
     visuals: 3,
     alpha: 4,
     beta: 5,
-    production: 6
+    production: 6,
+    design: 7
   )
 end
