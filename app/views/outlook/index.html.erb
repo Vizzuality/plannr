@@ -10,8 +10,10 @@
       <th>PM</th>
       <th>Budget</th>
       <% today = Date.today %>
+      <% current_month = nil %>
       <% @range_of_months.each do |r| %>
-        <th class="<%= "current" if r.month == today.month && r.year == today.year %>">
+        <% current_month = r if r.month == today.month && r.year == today.year %>
+        <th class="<%= "current" if r == current_month %>">
           <%= r.strftime("%b/%y") %>
         </th>
       <% end %>
@@ -26,7 +28,10 @@
         <td><%= number_to_currency(project.budget) %></td>
         <% my_val = @per_months.select{|t| t[0] == project.id}.first[1] %>
         <% @range_of_months.each do |dt| %>
-          <td style="<%= "background-color: rgba(144,238,144, #{my_val});" if project.status_for(dt) %>">
+          <% if project.status_for(dt) %>
+            <% bg_colour ="background-color: rgba(144,238,144, #{my_val});" %>
+          <% end %>
+          <td style="<%= bg_colour || "" %>" class="<%= "current" if dt == current_month %>">
             <% if milestones = project.milestones.
                 where(release_date: dt..dt.end_of_month) %>
               <% milestones.each do |m| %>

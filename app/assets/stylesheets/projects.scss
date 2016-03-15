@@ -6,6 +6,13 @@ td.underway {
   background-color: lightgreen;
 }
 
-th.current {
-  background-color: #ccc;
+.table-bordered > thead > tr > th.current {
+  background-color: orange;
+  border-right: 2px dashed orange;
+  border-left: 2px dashed orange;
+}
+
+.table-bordered > tbody > tr > td.current {
+  border-right: 2px dashed orange;
+  border-left: 2px dashed orange;
 }
