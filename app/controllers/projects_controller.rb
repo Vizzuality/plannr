@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
+        set_project_managers
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -48,6 +49,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
+        set_project_managers
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

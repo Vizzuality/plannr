@@ -1,10 +1,10 @@
-<%= form_for([@project, @invoice]) do |f| %>
-  <% if @invoice.errors.any? %>
+<%= form_for([project, invoice]) do |f| %>
+  <% if invoice.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>
-      <% @invoice.errors.full_messages.each do |message| %>
+      <% invoice.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -30,6 +30,6 @@
     <%= f.label :date_sent %>
     <%= f.text_field :date_sent, class: "datepicker form-control" %>
   </div>
-  <%= f.submit "#{@invoice.new_record? ? "Create" : "Update"}",
+  <%= f.submit "#{invoice.new_record? ? "Create" : "Update"}",
     class: "btn btn-default" %>
 <% end %>

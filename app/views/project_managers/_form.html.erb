@@ -1,10 +1,10 @@
-<%= form_for(@project_manager) do |f| %>
-  <% if @project_manager.errors.any? %>
+<%= form_for(project_manager) do |f| %>
+  <% if project_manager.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project_manager.errors.count, "error") %> prohibited this project_manager from being saved:</h2>
+      <h2><%= pluralize(project_manager.errors.count, "error") %> prohibited this project_manager from being saved:</h2>
 
       <ul>
-      <% @project_manager.errors.full_messages.each do |message| %>
+      <% project_manager.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -15,6 +15,6 @@
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
-  <%= f.submit "#{@project_manager.new_record? ? "Create" : "Update"}",
+  <%= f.submit "#{project_manager.new_record? ? "Create" : "Update"}",
     class: "btn btn-default" %>
 <% end %>
