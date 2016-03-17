@@ -1,49 +1,50 @@
 require 'test_helper'
 
-class MilestonesControllerTest < ActionController::TestCase
+class MilestonesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @milestone = milestones(:one)
+    @project = projects(:one)
   end
 
   test "should get index" do
-    get :index
+    get milestones_url
     assert_response :success
-    assert_not_nil assigns(:milestones)
   end
 
   test "should get new" do
-    get :new
+    get new_project_milestone_url(@project)
     assert_response :success
   end
 
   test "should create milestone" do
     assert_difference('Milestone.count') do
-      post :create, milestone: { milestone: @milestone.milestone, name: @milestone.name, project_id: @milestone.project_id, release_date: @milestone.release_date }
+      post project_milestones_url(@project), params: {
+        milestone: { milestone: @milestone.milestone, name: @milestone.name,
+                     release_date: @milestone.release_date } }
     end
 
-    assert_redirected_to milestone_path(assigns(:milestone))
-  end
-
-  test "should show milestone" do
-    get :show, id: @milestone
-    assert_response :success
+    assert_redirected_to projects_path
   end
 
   test "should get edit" do
-    get :edit, id: @milestone
+    get edit_milestone_url(@milestone)
     assert_response :success
   end
 
   test "should update milestone" do
-    patch :update, id: @milestone, milestone: { milestone: @milestone.milestone, name: @milestone.name, project_id: @milestone.project_id, release_date: @milestone.release_date }
-    assert_redirected_to milestone_path(assigns(:milestone))
+    patch project_milestone_url(@project, @milestone), {
+      milestone: {
+        milestone: @milestone.milestone,
+        name: @milestone.name, project_id: @milestone.project_id,
+        release_date: @milestone.release_date } }
+    assert_redirected_to projects_path
   end
 
   test "should destroy milestone" do
     assert_difference('Milestone.count', -1) do
-      delete :destroy, id: @milestone
+      delete milestone_url(@milestone)
     end
 
-    assert_redirected_to milestones_path
+    assert_redirected_to projects_path
   end
 end
