@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reports
   resources :projects do
     resources :milestones, shalow: true, only: [:new, :create, :update]
     resources :invoices, shalow: true, except: [:index, :show]

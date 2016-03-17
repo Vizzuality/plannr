@@ -1,0 +1,41 @@
+<fieldset>
+  <div class="form-group">
+    <%= f.label :project_id %>
+    <%= f.select :project_id,
+      options_from_collection_for_select(projects, :id,
+                                         :name, f.object.project_id),
+                                         { include_blank: true },
+                                         class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :project_name %>
+    <%= f.text_field :project_name, disabled: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :total_time %>
+    <%= f.text_field :total_time, disabled: true, class: "form-control" %>
+  </div>
+  <% if f.object.breakdown.present? %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Who?</th>
+          <th>%</th>
+          <th>Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% f.object.breakdown.sort{|a,b| b["percentage"] <=> a["percentage"]}.
+          each do |h| %>
+          <tr>
+            <td><%= h["email"] %></td>
+            <td><%= h["percentage"] %></td>
+            <td><%= h["days"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</fieldset>

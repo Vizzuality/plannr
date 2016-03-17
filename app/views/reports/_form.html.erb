@@ -1,0 +1,33 @@
+<%= form_for(report, html: { multipart: true }) do |f| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :report_date %>
+    <%= f.text_field :report_date, value: report.report_date && l(report.report_date),
+      class: "datepicker form-control"%>
+  </div>
+
+  <% if report.new_record? %>
+    <div class="form-group">
+      <%= f.label :report_file %>
+      <%= f.file_field :report_file, class: "form-control" %>
+    </div>
+  <% else %>
+    <%= f.fields_for :project_reports do |project_report| %>
+      <%= render 'project_report_fields', f: project_report %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "#{report.new_record? ? "Create" : "Update"} ",
+    class: "btn btn-default" %>
+<% end %>

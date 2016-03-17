@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310190033) do
+ActiveRecord::Schema.define(version: 20160316184329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20160310190033) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_reports", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "report_id"
+    t.float    "total_time",   default: 0.0
+    t.json     "breakdown",    default: {}
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "project_name"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.decimal  "budget"
@@ -50,6 +60,12 @@ ActiveRecord::Schema.define(version: 20160310190033) do
     t.datetime "updated_at",                         null: false
     t.boolean  "archived",           default: false
     t.integer  "project_manager_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.date     "report_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

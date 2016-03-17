@@ -1,5 +1,8 @@
 class Project < ApplicationRecord
 
+  has_many :project_reports
+  has_many :reports, through: :project_reports
+
   has_many :milestones
   has_many :invoices
   belongs_to :project_manager
