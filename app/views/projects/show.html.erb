@@ -7,18 +7,47 @@
 
 <p>
   <strong>Budget:</strong>
-  <%= @project.budget %>
+  <%= @project.budget && number_to_currency(@project.budget) %>
 </p>
 
 <p>
   <strong>Start date:</strong>
-  <%= @project.start_date %>
+  <%= @project.start_date && l(@project.start_date) %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @project.end_date %>
+  <%= @project.end_date && l(@project.end_date) %>
 </p>
+
+<hr>
+
+<h2>Reports</h2>
+
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <td>Date</td>
+      <td>Total amount</td>
+      <td>Breakdown</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project.project_reports.each do |pr| %>
+      <tr>
+        <td><%= pr.report.report_date %></td>
+        <td><%= pr.total_time %> days</td>
+        <td>
+          <ul>
+            <% pr.breakdown.sort{|a,b| b["percentage"] <=> a["percentage"]}.each do |h| %>
+              <%= h["email"] %> worked <%= h["percentage"] %>% (<%= h["days"] %> days)
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
