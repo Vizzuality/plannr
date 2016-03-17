@@ -35,7 +35,7 @@
   <tbody>
     <% @project.project_reports.each do |pr| %>
       <tr>
-        <td><%= pr.report.report_date %></td>
+        <td><%= l(pr.report.report_date) %></td>
         <td><%= pr.total_time %> days</td>
         <td>
           <ul>

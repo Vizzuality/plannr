@@ -7,6 +7,7 @@ class Report < ApplicationRecord
 
   attr_accessor :report_file
   validates :report_file, presence: true, on: :create
+  validates :report_date, presence: true
 
   before_create :parse_file
 
