@@ -74,7 +74,7 @@ class ReportsController < ApplicationController
     def report_params
       params.require(:report).permit(:report_date, :report_file,
                                      project_reports_attributes: [
-                                       :project_id, :breakdown])
+                                       :id, :project_id, :breakdown])
     end
 
 end

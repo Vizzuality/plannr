@@ -1,10 +1,10 @@
 class Project < ApplicationRecord
 
-  has_many :project_reports
+  has_many :project_reports, dependent: :destroy
   has_many :reports, through: :project_reports
 
-  has_many :milestones
-  has_many :invoices
+  has_many :milestones, dependent: :destroy
+  has_many :invoices, dependent: :destroy
   belongs_to :project_manager
 
   scope :archived, -> { where(archived: true) }

@@ -1,7 +1,7 @@
 require 'csv'
 
 class Report < ApplicationRecord
-  has_many :project_reports
+  has_many :project_reports, dependent: :destroy
   accepts_nested_attributes_for :project_reports
   has_many :projects, through: :project_reports
 

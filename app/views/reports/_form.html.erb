@@ -23,9 +23,22 @@
       <%= f.file_field :report_file, class: "form-control" %>
     </div>
   <% else %>
-    <%= f.fields_for :project_reports do |project_report| %>
-      <%= render 'project_report_fields', f: project_report %>
-    <% end %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Reported project name</th>
+          <th>Total time (d)</th>
+          <th>Breakdown</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :project_reports do |project_report| %>
+          <%= render 'project_report_fields', f: project_report,
+            projects: projects %>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 
   <%= f.submit "#{report.new_record? ? "Create" : "Update"} ",
