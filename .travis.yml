@@ -10,7 +10,7 @@ before_script:
 script:
   - 'bundle exec rake db:create'
   - 'bundle exec rake db:migrate'
-  - 'bundle exec rake test'
+  - 'CODECLIMATE_REPO_TOKEN=49f907587e83d2737804911d7f022d51b9799654e79de36eb59a3799ad7d1423 bundle exec rake'
 
 notifications:
   email:

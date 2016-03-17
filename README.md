@@ -1,5 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/Vizzuality/plannr/badges/gpa.svg)](https://codeclimate.com/github/Vizzuality/plannr)
 [![Build Status](https://travis-ci.org/Vizzuality/plannr.svg?branch=master)](https://travis-ci.org/Vizzuality/plannr)
+[![Test Coverage](https://codeclimate.com/github/Vizzuality/plannr/badges/coverage.svg)](https://codeclimate.com/github/Vizzuality/plannr/coverage)
 
 == README
 
