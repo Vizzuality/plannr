@@ -4,9 +4,6 @@ cache: bundler
 rvm:
   - 2.2.4
 
-addons:
-  postgresql: '9.3'
-
 before_script:
   - cp config/database.yml.travis config/database.yml
 
@@ -24,3 +21,4 @@ notifications:
 addons:
   code_climate:
     repo_token: 49f907587e83d2737804911d7f022d51b9799654e79de36eb59a3799ad7d1423
+  postgresql: '9.3'
