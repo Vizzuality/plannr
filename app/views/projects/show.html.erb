@@ -11,6 +11,13 @@
 </p>
 
 <p>
+  <strong>Expenditure:</strong>
+  <%= number_to_currency(@project.project_reports.
+                          sum(:total_time) * Project::RATE_PER_DAY) %>
+  (<%= pluralize(@project.project_reports.sum(:total_time), "day") %>)
+</p>
+
+<p>
   <strong>Start date:</strong>
   <%= @project.start_date && l(@project.start_date) %>
 </p>
@@ -27,16 +34,22 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-      <td>Date</td>
-      <td>Total amount</td>
-      <td>Breakdown</td>
+      <th>Date</th>
+      <th>Cost</th>
+      <th>Time (d)</th>
+      <th>Breakdown</th>
     </tr>
   </thead>
   <tbody>
+    <% total_days = 0 %>
+    <% total_cost = 0.0 %>
     <% @project.project_reports.each do |pr| %>
+      <% total_days += pr.total_time %>
+      <% total_cost += (pr.total_time * Project::RATE_PER_DAY) %>
       <tr>
         <td><%= l(pr.report.report_date) %></td>
-        <td><%= pr.total_time %> days</td>
+        <td><%= number_to_currency(pr.total_time * Project::RATE_PER_DAY) %></td>
+        <td><%= "%.2f" % pr.total_time %></td>
         <td>
           <ul>
             <% pr.breakdown.sort{|a,b| b["percentage"] <=> a["percentage"]}.each do |h| %>
@@ -46,7 +59,13 @@
         </td>
       </tr>
     <% end %>
-    </tbody>
+    <tr>
+      <th>Total</th>
+      <td><%= number_to_currency(total_cost) %></td>
+      <td><%= "%.2f" % total_days %></td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

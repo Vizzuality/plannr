@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
 
+  RATE_PER_DAY = 200.00
+
   has_many :project_reports, dependent: :destroy
   has_many :reports, through: :project_reports
 
