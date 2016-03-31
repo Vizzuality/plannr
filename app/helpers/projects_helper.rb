@@ -50,8 +50,10 @@ module ProjectsHelper
 
   def invoice_summary invoice
     txt = [number_to_currency(invoice.value)]
-    txt << if invoice.date_sent
-        "sent on #{l(invoice.date_sent)}"
+    txt << if invoice.payed_on
+        "payed on #{l(invoice.payed_on)}"
+      elsif invoice.date_sent
+        "sent on #{l(invoice.date_sent)} [Payment Pending]"
       else
         "to send on #{l(invoice.planned_date)}"
       end
