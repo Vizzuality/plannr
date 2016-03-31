@@ -21,6 +21,9 @@
         <li class="<%= "active" if controller_name == "milestones" %>">
           <%= link_to "Milestones", milestones_path %>
         </li>
+        <li class="<%= "active" if controller_name == "invoices" %>">
+          <%= link_to "Invoices", invoices_path %>
+        </li>
         <li class="<%= "active" if controller_name == "reports" && action_name == "new" %>">
           <%= link_to "Add report", new_report_path %>
         </li>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :reports
   resources :projects do
     resources :milestones, shalow: true, only: [:new, :create, :update]
-    resources :invoices, shalow: true, except: [:index, :show]
+    resources :invoices, shalow: true, except: [:show]
 
     member do
       patch :archive

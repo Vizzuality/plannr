@@ -2,6 +2,12 @@ class InvoicesController < ApplicationController
   before_action :set_project, only: [:new, :edit, :create]
   before_action :set_invoice, only: [:edit, :update, :destroy]
 
+  # GET /invoices
+  def index
+    @invoices = Invoice.joins(:project).where(projects: {archived: false}).
+      order("projects.name ASC")
+  end
+
   # GET /invoices/new
   def new
     @invoice = @project.invoices.build

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Invoices</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Planned</th>
+      <th>Sent</th>
+      <th>Payed on</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.project.name %></td>
+        <td><%= invoice.name %></td>
+        <td><%= number_to_currency invoice.value %></td>
+        <td><%= l invoice.planned_date if invoice.planned_date %></td>
+        <td><%= l invoice.date_sent if invoice.date_sent %></td>
+        <td><%= l invoice.payed_on if invoice.payed_on %></td>
+        <td>
+          <%= link_to 'Edit', edit_invoice_path(invoice) %>
+          |
+          <%= link_to 'Destroy', invoice, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
