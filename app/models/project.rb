@@ -22,8 +22,8 @@ class Project < ApplicationRecord
   end
 
   def budget_per_month
-    return 0 unless budget
-    budget / [((end_date.year * 12 + end_date.month) -
+    return 0 unless score
+    score / [((end_date.year * 12 + end_date.month) -
                (start_date.year * 12 + start_date.month)),1].max
   end
 end

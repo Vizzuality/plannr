@@ -30,7 +30,7 @@ class OutlookController < ApplicationController
   def calc_per_months
     vals = []
     @projects.each do |p|
-      vals << [p.id, p.budget_per_month]
+      vals << [p.id, p.score]
     end
     max = vals.map{|g| g[1]}.max
     min = vals.map{|g| g[1]}.min

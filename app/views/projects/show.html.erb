@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Score:</strong>
+  <%= @project.score %>
+</p>
+
+<p>
   <strong>Budget:</strong>
   <%= @project.budget && number_to_currency(@project.budget) %>
 </p>

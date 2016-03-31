@@ -10,6 +10,7 @@
       <th>#</th>
       <th>Name</th>
       <th>PM</th>
+      <th>Score</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Milestones</th>
@@ -24,6 +25,7 @@
         <td><%= i+1 %></td>
         <td><%= project.name %></td>
         <td><%= project.project_manager.try(:name) %></td>
+        <td><%= project.score %></td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>
         <td>
