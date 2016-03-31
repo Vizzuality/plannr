@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160331143314) do
     t.datetime "updated_at",                         null: false
     t.boolean  "archived",           default: false
     t.integer  "project_manager_id"
-    t.integer  "score"
+    t.integer  "score",              default: 0
   end
 
   create_table "reports", force: :cascade do |t|
