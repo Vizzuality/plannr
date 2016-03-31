@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @report.project_reports.each do |pr| %>
+    <% @report.project_reports.joins(:project).order("projects.name").each do |pr| %>
       <tr>
         <td><%= pr.project.try(:name) %> (<%= pr.project_name %>)</td>
         <td><%= pr.total_time %></td>
