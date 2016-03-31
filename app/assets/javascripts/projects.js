@@ -3,6 +3,7 @@
 var ready;
 ready = function() {
   $('.datepicker').datepicker({
+    autoclose: true,
     format: 'dd-mm-yyyy'
   });
   $('[data-toggle="tooltip"]').tooltip();

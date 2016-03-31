@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
-  before_action :set_project, only: [:new, :edit, :create]
   before_action :set_invoice, only: [:edit, :update, :destroy]
+  before_action :set_project, only: [:new, :edit, :create]
 
   # GET /invoices
   def index
@@ -38,7 +38,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to projects_url, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to invoices_url, notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
@@ -52,7 +52,7 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Invoice was successfully destroyed.' }
+      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -60,7 +60,8 @@ class InvoicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:project_id])
+      @project = params[:project_id] ? Project.find(params[:project_id]) :
+        @invoice.project
     end
 
     def set_invoice

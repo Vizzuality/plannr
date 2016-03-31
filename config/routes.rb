@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   resources :reports
   resources :projects do
     resources :milestones, shalow: true, only: [:new, :create, :update]
-    resources :invoices, shalow: true, except: [:show]
+    resources :invoices, shalow: true, except: [:index, :show]
 
     member do
       patch :archive
     end
   end
   resources :milestones, only: [:edit, :index, :destroy]
+  resources :invoices, only: [:index, :destroy, :edit]
   resources :project_managers, except: [:show]
 
   get 'archived_projects', to: 'archived_projects#index'

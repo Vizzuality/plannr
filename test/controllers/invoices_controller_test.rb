@@ -31,7 +31,7 @@ class InvoicesControllerTest < ActionDispatch::IntegrationTest
       invoice: {
         date_sent: @invoice.date_sent, name: @invoice.name,
         planned_date: @invoice.planned_date, project_id: @invoice.project_id }}
-    assert_redirected_to projects_path
+    assert_redirected_to invoices_path
   end
 
   test "should destroy invoice" do
@@ -39,6 +39,6 @@ class InvoicesControllerTest < ActionDispatch::IntegrationTest
       delete project_invoice_url(@project, @invoice)
     end
 
-    assert_redirected_to projects_path
+    assert_redirected_to invoices_path
   end
 end

@@ -1,6 +1,6 @@
 class MilestonesController < ApplicationController
-  before_action :set_project, only: [:new, :create]
   before_action :set_milestone, only: [:edit, :update, :destroy]
+  before_action :set_project, only: [:new, :edit, :create]
 
 
   # GET /milestones
@@ -16,7 +16,6 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/1/edit
   def edit
-    @project = @milestone.project
   end
 
   # POST /milestones
@@ -42,7 +41,7 @@ class MilestonesController < ApplicationController
   def update
     respond_to do |format|
       if @milestone.update(milestone_params)
-        format.html { redirect_to projects_url,
+        format.html { redirect_to milestones_url,
                       notice: 'Milestone was successfully updated.' }
         format.json { render :show, status: :ok, location: @milestone }
       else
@@ -57,7 +56,7 @@ class MilestonesController < ApplicationController
   def destroy
     @milestone.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url,
+      format.html { redirect_to milestones_url,
                     notice: 'Milestone was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -66,7 +65,8 @@ class MilestonesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:project_id])
+      @project = params[:project_id] ? Project.find(params[:project_id]) :
+        @milestone.project
     end
 
     def set_milestone

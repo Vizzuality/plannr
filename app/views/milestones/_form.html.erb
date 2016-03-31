@@ -22,7 +22,8 @@
   </div>
   <div class="form-group">
     <%= f.label :release_date %>
-    <%= f.text_field :release_date, class: "datepicker form-control" %>
+    <%= f.text_field :release_date, value: milestone.release_date && l(milestone.release_date),
+      class: "datepicker form-control" %>
   </div>
   <%= f.submit "#{milestone.new_record? ? "Create" : "Update"}",
     class: "btn btn-default" %>

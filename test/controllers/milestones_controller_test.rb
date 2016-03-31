@@ -37,7 +37,7 @@ class MilestonesControllerTest < ActionDispatch::IntegrationTest
         milestone: @milestone.milestone,
         name: @milestone.name, project_id: @milestone.project_id,
         release_date: @milestone.release_date } }
-    assert_redirected_to projects_path
+    assert_redirected_to milestones_path
   end
 
   test "should destroy milestone" do
@@ -45,6 +45,6 @@ class MilestonesControllerTest < ActionDispatch::IntegrationTest
       delete milestone_url(@milestone)
     end
 
-    assert_redirected_to projects_path
+    assert_redirected_to milestones_path
   end
 end

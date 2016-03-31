@@ -24,15 +24,18 @@
   </div>
   <div class="form-group">
     <%= f.label :planned_date %>
-    <%= f.text_field :planned_date, class: "datepicker form-control" %>
+    <%= f.text_field :planned_date, value: invoice.planned_date && l(invoice.planned_date),
+      class: "datepicker form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :date_sent %>
-    <%= f.text_field :date_sent, class: "datepicker form-control" %>
+    <%= f.text_field :date_sent, value: invoice.date_sent && l(invoice.date_sent),
+      class: "datepicker form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :payed_on %>
-    <%= f.text_field :payed_on, class: "datepicker form-control" %>
+    <%= f.text_field :payed_on, value: invoice.payed_on && l(invoice.payed_on),
+      class: "datepicker form-control" %>
   </div>
   <%= f.submit "#{invoice.new_record? ? "Create" : "Update"}",
     class: "btn btn-default" %>
