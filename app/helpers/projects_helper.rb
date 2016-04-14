@@ -54,8 +54,10 @@ module ProjectsHelper
         "payed on #{l(invoice.payed_on)}"
       elsif invoice.date_sent
         "sent on #{l(invoice.date_sent)} [Payment Pending]"
-      else
+      elsif invoice.planned_date
         "to send on #{l(invoice.planned_date)}"
+      else
+        "no dates set, please amend this invoice."
       end
     txt << link_to("Edit", edit_project_invoice_path(invoice.project, invoice))
     txt.join(" ")
