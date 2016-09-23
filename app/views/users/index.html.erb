@@ -30,7 +30,7 @@
           <ul>
             <% user.rosters.active.each do |roster| %>
               <li>
-                <%= roster.team.name %>
+                <%= link_to roster.team.name, roster.team %>
                 (<%= link_to "Delete", roster, method: :delete, data: {confirm: "Are you sure?" } %>)
               </li>
             <% end %>
