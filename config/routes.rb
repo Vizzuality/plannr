@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :milestones, only: [:edit, :index, :destroy]
   resources :invoices, only: [:index, :destroy, :edit]
-  resources :users, except: [:show] do
+  resources :users do
     resources :rosters, only: [:new, :create]
   end
   resources :rosters, only: [:destroy]

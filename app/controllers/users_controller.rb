@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @users = User.order(:name)
   end
 
+  def show
+  end
+
   # GET /users/new
   def new
     @user = User.new

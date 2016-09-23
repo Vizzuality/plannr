@@ -22,3 +22,14 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h3>Teams</h3>
+
+<ul>
+  <% @user.teams.order(:name).each do |team| %>
+    <li>
+      <%= link_to team.name, team %>
+      (<%= team.active? ? "Active" : "Inactive" %>)
+    </li>
+  <% end %>
+</ul>
