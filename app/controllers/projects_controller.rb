@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
-  before_action :set_users, only: [:new, :edit]
+  before_action :set_project_managers, only: [:new, :edit]
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.order(:name).
-      includes([:milestones, :invoices, :user]).
+      includes([:milestones, :invoices, :project_manager]).
       live
   end
 
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
-        set_users
+        set_project_managers
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
-        set_users
+        set_project_managers
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -82,14 +82,14 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
-    def set_users
-      @users = User.project_managers
+    def set_project_managers
+      @project_managers = User.project_managers
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :budget, :start_date, :end_date,
-                                      :user_id, :score)
+                                      :project_manager_id, :score)
     end
 
     def archive_params

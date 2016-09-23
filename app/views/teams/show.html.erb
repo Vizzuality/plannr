@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Project Manager:</strong>
+  <%= @team.project_manager.try(:name) %>
+</p>
+
+<p>
+  <strong>Tech Lead:</strong>
+  <%= @team.tech_lead.try(:name) %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @team.active? %>
+</p>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

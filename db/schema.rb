@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923164957) do
+ActiveRecord::Schema.define(version: 20160923172404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,17 +51,34 @@ ActiveRecord::Schema.define(version: 20160923164957) do
     t.decimal  "budget"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "archived",   default: false
-    t.integer  "user_id"
-    t.integer  "score",      default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "archived",           default: false
+    t.integer  "project_manager_id"
+    t.integer  "score",              default: 0
   end
 
   create_table "reports", force: :cascade do |t|
     t.date     "report_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "rosters", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.decimal  "percentage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "project_manager_id"
+    t.boolean  "active",             default: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "tech_lead_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,5 +94,5 @@ ActiveRecord::Schema.define(version: 20160923164957) do
   add_foreign_key "milestones", "projects"
   add_foreign_key "project_reports", "projects"
   add_foreign_key "project_reports", "reports"
-  add_foreign_key "projects", "users"
+  add_foreign_key "projects", "users", column: "project_manager_id"
 end

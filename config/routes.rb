@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :milestones, only: [:edit, :index, :destroy]
   resources :invoices, only: [:index, :destroy, :edit]
   resources :users, except: [:show]
+  resources :teams
 
   get 'archived_projects', to: 'archived_projects#index'
   get 'outlook', to: 'outlook#index'
