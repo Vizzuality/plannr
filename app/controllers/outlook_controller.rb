@@ -1,4 +1,5 @@
 class OutlookController < ApplicationController
+  before_action :set_teams_and_project_managers, only: [:index]
 
   def index
     @interval = [3.months.ago.beginning_of_month.to_date,
@@ -6,6 +7,7 @@ class OutlookController < ApplicationController
     @range_of_months = range_of_months(@interval)
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).
+      filter_with(index_filters).
       includes([:milestones, :invoices, :project_manager])
   end
 
@@ -24,5 +26,14 @@ class OutlookController < ApplicationController
       end
     end
     range
+  end
+
+  def index_filters
+    params.permit(:team_id, :project_manager_id)
+  end
+
+  def set_teams_and_project_managers
+    @teams = Team.active.order(:name)
+    @project_managers = User.project_managers
   end
 end

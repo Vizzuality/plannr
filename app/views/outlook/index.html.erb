@@ -3,6 +3,16 @@
   <%= @interval.last.strftime("%B-%Y") %>
 </h1>
 
+<%= form_tag outlook_path, method: :get, class: "form-horizontal" do %>
+  <div class="form-group">
+    <%= select_tag :team_id, options_from_collection_for_select(@teams, :id, :name, params[:team_id]),
+      include_blank: "Filter by team", class: "form-control" %>
+    <%= select_tag :project_manager_id, options_from_collection_for_select(@project_managers, :id, :name, params[:project_manager_id]),
+      include_blank: "Filter by project manager", class: "form-control" %>
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>

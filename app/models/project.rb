@@ -21,4 +21,15 @@ class Project < ApplicationRecord
       "underway"
     end
   end
+
+  def self.filter_with filters
+    s = all
+    if filters[:team_id].present?
+      s = s.where(team_id: filters[:team_id])
+    end
+    if filters[:project_manager_id].present?
+      s = s.where(project_manager_id: filters[:project_manager_id])
+    end
+    s
+  end
 end
