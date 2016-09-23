@@ -16,3 +16,7 @@ td.underway {
   border-right: 2px dashed orange;
   border-left: 2px dashed orange;
 }
+
+.table > tbody > tr > td.underway {
+  background-color: rgba(144,238,144,1);
+}

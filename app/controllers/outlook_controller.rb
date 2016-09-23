@@ -7,7 +7,6 @@ class OutlookController < ApplicationController
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).
       includes([:milestones, :invoices, :project_manager])
-    @per_months = calc_per_months
   end
 
 
@@ -25,18 +24,5 @@ class OutlookController < ApplicationController
       end
     end
     range
-  end
-
-  def calc_per_months
-    vals = []
-    @projects.each do |p|
-      vals << [p.id, p.score]
-    end
-    max = vals.map{|g| g[1]}.max
-    min = vals.map{|g| g[1]}.min
-    vals.each do |a|
-      a[1] = (((1-0.1)*(a[1]-min))/(max-min))+0.1
-    end
-    vals
   end
 end

@@ -8,6 +8,7 @@
     <tr>
       <th>Name</th>
       <th>PM</th>
+      <th>Team</th>
       <% today = Date.today %>
       <% current_month = nil %>
       <% @range_of_months.each do |r| %>
@@ -24,12 +25,9 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.project_manager.try(:name) %></td>
-        <% my_val = @per_months.select{|t| t[0] == project.id}.first[1] %>
+        <td><%= project.team.try(:name) %></td>
         <% @range_of_months.each do |dt| %>
-          <% if project.status_for(dt) %>
-            <% bg_colour ="background-color: rgba(144,238,144, #{my_val});" %>
-          <% end %>
-          <td style="<%= bg_colour || "" %>" class="<%= "current" if dt == current_month %>">
+          <td class="<%= "underway" if project.status_for(dt) %> <%= "current" if dt == current_month %>">
             <% if milestones = project.milestones.
                 where(release_date: dt..dt.end_of_month) %>
               <% milestones.each do |m| %>
