@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
   belongs_to :project_manager, class_name: 'User'
   belongs_to :tech_lead, class_name: 'User'
+
+  scope :active, -> { where(active: true) }
 end

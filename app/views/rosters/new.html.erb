@@ -1,0 +1,5 @@
+<h1>Add <%= @user.name %> to a team</h1>
+
+<%= render 'form', roster: @roster, user: @user, teams: @teams %>
+
+<p><%= link_to 'Back', users_path %></p>

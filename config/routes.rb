@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   end
   resources :milestones, only: [:edit, :index, :destroy]
   resources :invoices, only: [:index, :destroy, :edit]
-  resources :users, except: [:show]
+  resources :users, except: [:show] do
+    resources :rosters, only: [:new, :create]
+  end
+  resources :rosters, only: [:destroy]
   resources :teams
 
   get 'archived_projects', to: 'archived_projects#index'

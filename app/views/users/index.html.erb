@@ -14,7 +14,8 @@
       <th>Email</th>
       <th>Title</th>
       <th>Manages Projects?</th>
-      <th colspan="3"></th>
+      <th>Active Teams</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -25,7 +26,18 @@
         <td><%= user.email %></td>
         <td><%= user.title %></td>
         <td><%= user.manages_projects? %></td>
+        <td>
+          <ul>
+            <% user.rosters.active.each do |roster| %>
+              <li>
+                <%= roster.team.name %>
+                (<%= link_to "Delete", roster, method: :delete, data: {confirm: "Are you sure?" } %>)
+              </li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Add to team', new_user_roster_path(user) %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
