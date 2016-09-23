@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331144858) do
+ActiveRecord::Schema.define(version: 20160923164957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,6 @@ ActiveRecord::Schema.define(version: 20160331144858) do
     t.string   "name"
   end
 
-  create_table "project_managers", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "project_reports", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "report_id"
@@ -57,11 +51,11 @@ ActiveRecord::Schema.define(version: 20160331144858) do
     t.decimal  "budget"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.boolean  "archived",           default: false
-    t.integer  "project_manager_id"
-    t.integer  "score",              default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "archived",   default: false
+    t.integer  "user_id"
+    t.integer  "score",      default: 0
   end
 
   create_table "reports", force: :cascade do |t|
@@ -70,9 +64,18 @@ ActiveRecord::Schema.define(version: 20160331144858) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "email"
+    t.string   "title"
+    t.boolean  "manages_projects", default: false
+  end
+
   add_foreign_key "invoices", "projects"
   add_foreign_key "milestones", "projects"
   add_foreign_key "project_reports", "projects"
   add_foreign_key "project_reports", "reports"
-  add_foreign_key "projects", "project_managers"
+  add_foreign_key "projects", "users"
 end

@@ -6,7 +6,7 @@ class OutlookController < ApplicationController
     @range_of_months = range_of_months(@interval)
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).
-      includes([:milestones, :invoices, :project_manager])
+      includes([:milestones, :invoices, :user])
     @per_months = calc_per_months
   end
 

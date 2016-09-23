@@ -23,7 +23,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td><%= project.project_manager.try(:name) %></td>
+        <td><%= project.user.try(:name) %></td>
         <% my_val = @per_months.select{|t| t[0] == project.id}.first[1] %>
         <% @range_of_months.each do |dt| %>
           <% if project.status_for(dt) %>

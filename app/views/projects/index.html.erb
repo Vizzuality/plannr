@@ -24,7 +24,7 @@
       <tr>
         <td><%= i+1 %></td>
         <td><%= project.name %></td>
-        <td><%= project.project_manager.try(:name) %></td>
+        <td><%= project.user.try(:name) %></td>
         <td><%= project.score %></td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>
