@@ -6,14 +6,27 @@
 </p>
 
 <p>
+  <strong>Project Manager:</strong>
+  <%= link_to(@project.project_manager.name,
+              @project.project_manager) if @project.project_manager %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= link_to(@project.team.name, @project.team) if @project.team %>
+</p>
+
+<%# commented out for now
+<p>
   <strong>Score:</strong>
-  <%= @project.score %>
+  <%= @project.score % >
 </p>
 
 <p>
   <strong>Budget:</strong>
-  <%= @project.budget && number_to_currency(@project.budget) %>
+  <%= @project.budget && number_to_currency(@project.budget) % >
 </p>
+%>
 
 <p>
   <strong>Start date:</strong>

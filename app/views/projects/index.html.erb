@@ -10,6 +10,7 @@
       <th>#</th>
       <th>Name</th>
       <th>PM</th>
+      <th>Team</th>
       <th>Score</th>
       <th>Start date</th>
       <th>End date</th>
@@ -24,7 +25,11 @@
       <tr>
         <td><%= i+1 %></td>
         <td><%= project.name %></td>
-        <td><%= project.project_manager.try(:name) %></td>
+        <td>
+          <%= link_to(project.project_manager.name,
+                      project.project_manager) if project.project_manager %>
+        </td>
+        <td><%= link_to(project.team.name, project.team) if project.team %></td>
         <td><%= project.score %></td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>

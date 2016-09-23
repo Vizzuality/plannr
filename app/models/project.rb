@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :milestones, dependent: :destroy
   has_many :invoices, dependent: :destroy
   belongs_to :project_manager, class_name: 'User'
+  belongs_to :team
 
   scope :archived, -> { where(archived: true) }
   scope :live, -> { where(archived: false) }
