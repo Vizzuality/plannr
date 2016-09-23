@@ -1,14 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
-  before_action :set_project_managers, only: [:new, :edit]
-  before_action :set_teams, only: [:new, :edit]
+  before_action :set_project_managers, only: [:new, :edit, :index]
+  before_action :set_teams, only: [:new, :edit, :index]
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.order(:name).
-      includes([:milestones, :invoices, :project_manager]).
-      live
+      includes([:milestones, :invoices, :project_manager]).live.
+      filter_with(index_filters)
   end
 
   # GET /projects/1
@@ -99,5 +99,9 @@ class ProjectsController < ApplicationController
 
     def archive_params
       params.require(:archived)
+    end
+
+    def index_filters
+      params.permit(:team_id, :project_manager_id)
     end
 end
