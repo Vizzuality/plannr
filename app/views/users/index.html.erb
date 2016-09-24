@@ -27,14 +27,11 @@
         <td><%= user.title %></td>
         <td><%= user.manages_projects? %></td>
         <td>
-          <ul>
-            <% user.rosters.active.each do |roster| %>
-              <li>
-                <%= link_to roster.team.name, roster.team %>
-                (<%= link_to "Delete", roster, method: :delete, data: {confirm: "Are you sure?" } %>)
-              </li>
-            <% end %>
-          </ul>
+          <% user.rosters.active.each do |roster| %>
+            <%= link_to roster.team.name, roster.team %>
+            (<%= link_to "Delete", roster, method: :delete, data: {confirm: "Are you sure?" } %>)
+            <br />
+          <% end %>
         </td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Add to team', new_user_roster_path(user) %></td>
