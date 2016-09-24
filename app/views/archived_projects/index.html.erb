@@ -7,7 +7,9 @@
     <tr>
       <th>#</th>
       <th>Name</th>
-      <th>Budget</th>
+      <th>PM</th>
+      <th>Team</th>
+      <th>Client</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Milestones</th>
@@ -17,25 +19,23 @@
   </thead>
 
   <tbody>
-    <% total = 0.0 %>
     <% @projects.each_with_index do |project, i| %>
-      <% total += project.budget if project.budget %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= project.name %></td>
-        <td><%= number_to_currency(project.budget) %></td>
+        <td>
+          <%= link_to(project.project_manager.name,
+                      project.project_manager) if project.project_manager %>
+        </td>
+        <td><%= link_to(project.team.name, project.team) if project.team %></td>
+        <td><%= link_to((project.client.short_name || project.client.name), project.client) if project.client %></td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>
         <td>
-          <% project.milestones.each do |m| %>
-            <%= tooltiped_span(m.release_date,
-                               m.name.presence || m.milestone_humanize) %>
-          <% end %>
+          <%= milestones_for project if project.milestones.any? %>
         </td>
         <td>
-          <% project.invoices.each do |i| %>
-            <%= display_invoice(i) %>
-          <% end %>
+          <%= invoices_for(project) if project.invoices.any? %>
         </td>
         <td>
           <%= link_to 'Unarchive', archive_project_path(project, archived: false),
@@ -50,11 +50,6 @@
         </td>
       </tr>
     <% end %>
-    <tr>
-      <th colspan=2>Total</th>
-      <td><%= number_to_currency total %></td>
-      <td colspan=6></td>
-    </tr>
   </tbody>
 </table>
 
