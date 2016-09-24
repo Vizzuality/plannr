@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   def archive
     @project.update_attribute(:archived, archive_params)
     if archive_params == "true"
-      redirect_to projects_url(index_filters)
+      redirect_to projects_url(index_filters), notice: "Project archived successfully"
     else
       redirect_to archived_projects_url
     end
