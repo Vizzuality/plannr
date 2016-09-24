@@ -45,7 +45,7 @@
         <% @range_of_months.each do |dt| %>
           <td class="<%= "underway" if project.status_for(dt) %> <%= "current" if dt == current_month %>">
             <% if milestones = project.milestones.
-                select{|m| m.release_date.year == dt.year && m.release_date.month == dt.month} %>
+                select{|m| m.release_date&.year == dt.year && m.release_date&.month == dt.month} %>
               <% milestones.each do |m| %>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"
                    data-toggle="tooltip"
@@ -53,7 +53,7 @@
               <% end %>
             <% end %>
             <% if invoices = project.invoices.
-                select{|i| i.planned_date.month == dt.month && i.planned_date.year == dt.year } %>
+                select{|i| i.planned_date&.month == dt.month && i.planned_date&.year == dt.year } %>
               <% invoices.each do |i| %>
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"
                    data-toggle="tooltip"
