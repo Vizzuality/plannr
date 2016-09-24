@@ -57,7 +57,7 @@
           <%= add_resource("invoice", new_project_invoice_path(project)) %>
         </td>
         <td>
-          <%= link_to 'Archive', archive_project_path(project, params.merge({archived: true})),
+          <%= link_to 'Archive', archive_project_path(project, params.merge({archived: true}).permit!),
             method: :patch %>
           |
           <%= link_to 'Show', project %>
