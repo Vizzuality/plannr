@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   def archive
     @project.update_attribute(:archived, archive_params)
     if archive_params == "true"
-      redirect_to projects_url
+      redirect_to projects_url(project_params)
     else
       redirect_to archived_projects_url
     end
