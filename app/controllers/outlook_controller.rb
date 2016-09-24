@@ -8,7 +8,7 @@ class OutlookController < ApplicationController
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).
       filter_with(index_filters).
-      includes([:milestones, :invoices, :project_manager])
+      includes([:milestones, :invoices, :project_manager, :team]).live
   end
 
 
