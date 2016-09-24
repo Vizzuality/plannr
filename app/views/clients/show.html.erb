@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @client.url %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @client.short_name %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>
+
+<h3>Projects</h3>
+<ul>
+  <% @client.projects.order(:name).each do |project| %>
+    <li><%= link_to project.name, project %> <%= project.archived? ? "Archived" : "Live" %></li>
+  <% end %>
+</ul>

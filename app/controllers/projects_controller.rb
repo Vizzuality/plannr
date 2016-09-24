@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
   before_action :set_project_managers, only: [:new, :edit, :index]
   before_action :set_teams, only: [:new, :edit, :index]
+  before_action :set_clients, only: [:new, :edit, :index]
 
   # GET /projects
   # GET /projects.json
@@ -92,10 +93,15 @@ class ProjectsController < ApplicationController
       @teams = Team.active.order(:name)
     end
 
+    def set_clients
+      @clients = Client.order(:name)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :budget, :start_date, :end_date,
-                                      :project_manager_id, :team_id, :score)
+                                      :project_manager_id, :team_id, :client_id,
+                                      :score)
     end
 
     def archive_params

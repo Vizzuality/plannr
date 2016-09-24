@@ -16,6 +16,11 @@
   <%= link_to(@project.team.name, @project.team) if @project.team %>
 </p>
 
+<p>
+  <strong>Client:</strong>
+  <%= link_to(@project.client.name, @project.client) if @project.client %>
+</p>
+
 <%# commented out for now
 <p>
   <strong>Score:</strong>
