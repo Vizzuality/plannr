@@ -36,9 +36,13 @@
                                          class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :active, "Active?" %>
-    <%= f.check_box :active, class: "form-control" %>
+  <div class="form-group">
+    <div class="checkbox">
+      <%= f.label :active do %>
+        <%= f.check_box :active %>
+        Team is active?
+      <% end %>
+    </div>
   </div>
 
   <%= f.submit "#{team.new_record? ? "Create" : "Update"}",
