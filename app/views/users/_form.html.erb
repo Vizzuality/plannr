@@ -27,8 +27,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :manages_projects %>
-    <%= f.check_box :manages_projects, class: "form-control" %>
+    <div class="checkbox">
+      <%= f.label :manages_projects do %>
+        <%= f.check_box :manages_projects %>
+        Manages projects?
+      <% end %>
+    </div>
   </div>
   <%= f.submit "#{user.new_record? ? "Create" : "Update"}",
     class: "btn btn-default" %>
