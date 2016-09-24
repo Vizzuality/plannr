@@ -7,8 +7,9 @@ class OutlookController < ApplicationController
     @range_of_months = range_of_months(@interval)
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).
-      filter_with(index_filters).
       includes([:milestones, :invoices, :project_manager, :team]).live
+    @projects = @projects.managed_by(index_filters[:project_manager_id]) if index_filters[:project_manager_id].present?
+    @projects = @projects.for_team(index_filters[:team_id]) if index_filters[:team_id].present?
   end
 
 
