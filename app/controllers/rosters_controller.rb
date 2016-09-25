@@ -12,7 +12,7 @@ class RostersController < ApplicationController
 
     respond_to do |format|
       if @roster.save
-        format.html { redirect_to users_path,
+        format.html { redirect_to users_url,
                       notice: "#{@user.name} successfully added to #{@roster.team.name}." }
         format.json { render :show, status: :created, location: @team }
       else
