@@ -20,7 +20,7 @@ class ClientsControllerTest < ActionDispatch::IntegrationTest
       post clients_url, params: { client: { name: @client.name, short_name: @client.short_name, url: @client.url } }
     end
 
-    assert_redirected_to client_url(Client.last)
+    assert_redirected_to clients_url
   end
 
   test "should show client" do
@@ -35,7 +35,7 @@ class ClientsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update client" do
     patch client_url(@client), params: { client: { name: @client.name, short_name: @client.short_name, url: @client.url } }
-    assert_redirected_to client_url(@client)
+    assert_redirected_to clients_url
   end
 
   test "should destroy client" do

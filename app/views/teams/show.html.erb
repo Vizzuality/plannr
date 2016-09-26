@@ -28,7 +28,7 @@
 <ul>
   <% @team.users.order(:name).each do |user| %>
     <li>
-      <%= link_to user.name, user %>, <%= user.title || "N/A" %>, <%= <%= "(manages projects)" if user.manages_projects? %>
+      <%= link_to user.name, user %>, <%= user.title || "N/A" %>, <%= "(manages projects)" if user.manages_projects? %>
     </li>
   <% end %>
 </ul>
