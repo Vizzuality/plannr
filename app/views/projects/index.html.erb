@@ -41,7 +41,12 @@
     <% @projects.each_with_index do |project, i| %>
       <tr>
         <td><%= i+1 %></td>
-        <td><%= project.name %></td>
+        <td>
+          <%= project.name %>
+          <% if project.intranet_url %>
+            (<%= link_to 'intranet', project.intranet_url %>)
+          <% end %>
+        </td>
         <td>
           <%= link_to(project.project_manager.name,
                       project.project_manager) if project.project_manager %>
@@ -68,10 +73,6 @@
           |
           <%= link_to 'Destroy', project, method: :delete,
           data: { confirm: 'Are you sure?' } %>
-          <% if project.intranet_url %>
-            |
-            <%= link_to 'Intranet', project.intranet_url %>
-          <% end %>
         </td>
       </tr>
     <% end %>
