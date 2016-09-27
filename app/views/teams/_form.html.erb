@@ -29,7 +29,7 @@
   <div class="form-group">
     <%= f.label :tech_lead_id %>
     <%= f.select :tech_lead_id,
-      options_from_collection_for_select(users,
+      options_from_collection_for_select(tech_leads,
                                          :id, :name,
                                          team.tech_lead_id),
                                          {include_blank: true},

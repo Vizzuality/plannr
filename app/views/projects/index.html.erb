@@ -48,7 +48,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to(project.project_manager.name,
+          <%= link_to(project.project_manager.display_name,
                       project.project_manager) if project.project_manager %>
         </td>
         <td><%= link_to(project.team.name, project.team) if project.team %></td>

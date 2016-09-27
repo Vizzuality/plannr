@@ -22,8 +22,8 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= link_to(team.project_manager.name, team.project_manager) if team.project_manager %></td>
-        <td><%= link_to(team.tech_lead.name, team.tech_lead) if team.tech_lead %></td>
+        <td><%= link_to(team.project_manager.display_name, team.project_manager) if team.project_manager %></td>
+        <td><%= link_to(team.tech_lead.display_name, team.tech_lead) if team.tech_lead %></td>
         <td><%= team.active? %></td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>

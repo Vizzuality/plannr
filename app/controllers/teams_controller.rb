@@ -76,7 +76,7 @@ class TeamsController < ApplicationController
     end
 
     def set_users
-      @project_managers = User.project_managers
-      @users = User.order(:name)
+      @project_managers = User.project_managers.order(:name)
+      @tech_leads = User.tech_leads.order(:name)
     end
 end
