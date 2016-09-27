@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927102118) do
+ActiveRecord::Schema.define(version: 20160927123258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160927102118) do
     t.string   "email"
     t.string   "title"
     t.boolean  "manages_projects", default: false
+    t.string   "password_digest"
   end
 
   add_foreign_key "invoices", "projects"

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :users do
+    resources :rosters, only: [:new, :create]
+  end
+  resources :sessions
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
   resources :clients
   resources :reports
   resources :projects do
@@ -11,9 +18,7 @@ Rails.application.routes.draw do
   end
   resources :milestones, only: [:edit, :index, :destroy]
   resources :invoices, only: [:index, :destroy, :edit]
-  resources :users do
-    resources :rosters, only: [:new, :create]
-  end
+
   resources :rosters, only: [:destroy]
   resources :teams
 
