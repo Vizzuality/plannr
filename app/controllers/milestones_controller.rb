@@ -6,7 +6,7 @@ class MilestonesController < ApplicationController
   # GET /milestones
   def index
     @milestones = Milestone.joins(:project).where(projects: {archived: false}).
-      order("projects.name ASC")
+      incoming.order("release_date ASC")
   end
 
   # GET /milestones/new
