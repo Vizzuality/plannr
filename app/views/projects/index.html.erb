@@ -52,7 +52,11 @@
                       project.project_manager) if project.project_manager %>
         </td>
         <td><%= link_to(project.team.name, project.team) if project.team %></td>
-        <td><%= link_to((project.client.short_name || project.client.name), project.client) if project.client %></td>
+        <td>
+          <% if project.client %>
+            <%= tooltiped_span(project.client.name, link_to((project.client.short_name || project.client.name), project.client)) %>
+          <% end %>
+        </td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>
         <td>
