@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :rosters
   has_many :teams, through: :rosters
 
-  scope :project_managers, -> { where(role: Roles::PROJECT_MANAGER) }
+  scope :project_managers, -> { where(role: [Roles::PROJECT_MANAGER, Roles::EXECUTIVE]) }
   scope :tech_leads, -> { where(role: Roles::TECH_LEAD) }
 
   validates_uniqueness_of :email
