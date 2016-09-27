@@ -21,6 +21,11 @@
   <%= link_to(@project.client.name, @project.client) if @project.client %>
 </p>
 
+<p>
+  <strong>Intranet:</strong>
+  <%= link_to(@project.intranet_url, @project.intranet_url) if @project.intranet_url %>
+</p>
+
 <%# commented out for now
 <p>
   <strong>Score:</strong>

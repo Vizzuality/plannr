@@ -101,7 +101,7 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :budget, :start_date, :end_date,
                                       :project_manager_id, :team_id, :client_id,
-                                      :score)
+                                      :score, :intranet_url)
     end
 
     def archive_params

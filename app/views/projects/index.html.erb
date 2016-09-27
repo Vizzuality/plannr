@@ -67,7 +67,11 @@
           <%= link_to 'Edit', edit_project_path(project) %>
           |
           <%= link_to 'Destroy', project, method: :delete,
-            data: { confirm: 'Are you sure?' } %>
+          data: { confirm: 'Are you sure?' } %>
+          <% if project.intranet_url %>
+            |
+            <%= link_to 'Intranet', project.intranet_url %>
+          <% end %>
         </td>
       </tr>
     <% end %>
