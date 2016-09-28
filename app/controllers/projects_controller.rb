@@ -9,8 +9,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.order(:name).
       includes([:milestones, :invoices, :project_manager]).live
-    @projects = @projects.managed_by(index_filters[:project_manager_id]) if index_filters[:project_manager_id].present?
-    @projects = @projects.for_team(index_filters[:team_id]) if index_filters[:team_id].present?
+    @projects = @projects.filtered(index_filters)
   end
 
   # GET /projects/1
@@ -109,6 +108,8 @@ class ProjectsController < ApplicationController
     end
 
     def index_filters
+      params[:project_manager_id] = current_user.id if !params[:project_manager_id] && current_user.can_manage_projects?
+      params[:team_id] = current_user.active_teams.first.id if !params[:team_id] && current_user.active_teams.any?
       params.permit(:team_id, :project_manager_id)
     end
 end
