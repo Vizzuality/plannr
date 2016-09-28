@@ -26,19 +26,14 @@ class Project < ApplicationRecord
   end
 
   def self.filtered filters
-    result = all
-    with_or = false
-    if filters[:project_manager_id].present?
-      result = result.managed_by(filters[:project_manager_id])
-      with_or = true
+    if filters[:project_manager_id].present? && filters[:team_id].present?
+      where("(team_id = ? OR project_manager_id = ?)", filters[:team_id], filters[:project_manager_id])
+    elsif filters[:project_manager_id].present?
+      managed_by(filters[:project_manager_id])
+    elsif filters[:team_id].present?
+      for_team(filters[:team_id])
+    else
+      all
     end
-    if filters[:team_id].present?
-      result = if with_or
-                 self.or(result.for_team(filters[:team_id]))
-               else
-                 result.for_team(filters[:team_id])
-               end
-    end
-    result
   end
 end
