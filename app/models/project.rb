@@ -27,11 +27,17 @@ class Project < ApplicationRecord
 
   def self.filtered filters
     result = all
+    with_or = false
     if filters[:project_manager_id].present?
       result = result.managed_by(filters[:project_manager_id])
+      with_or = true
     end
     if filters[:team_id].present?
-      result = result.for_team(filters[:team_id])
+      result = if with_or
+                 self.or(result.for_team(filters[:team_id]))
+               else
+                 result.for_team(filters[:team_id])
+               end
     end
     result
   end
