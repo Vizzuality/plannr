@@ -39,7 +39,7 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
+        <td><%= link_to project.name, project %></td>
         <td><%= project.project_manager&.display_name %></td>
         <td><%= project.team&.name %></td>
         <% @range_of_months.each do |dt| %>
