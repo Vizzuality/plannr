@@ -43,7 +43,7 @@
         <td><%= i+1 %></td>
         <td>
           <%= project.name %>
-          <% if project.intranet_url %>
+          <% if project.intranet_url.present? %>
             (<%= link_to 'intranet', project.intranet_url %>)
           <% end %>
         </td>
