@@ -2,34 +2,4 @@
 
 <h1>Milestones</h1>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Project</th>
-      <th>Name</th>
-      <th>Milestone</th>
-      <th>Release date</th>
-      <th>Team</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @milestones.each do |milestone| %>
-      <tr>
-        <td><%= milestone.project.name %></td>
-        <td><%= milestone.name %></td>
-        <td><%= milestone.milestone_humanize %></td>
-        <td><%= l milestone.release_date if milestone.release_date %></td>
-        <td><%= link_to(milestone.project.team.name, milestone.project.team) if milestone.project.team %></td>
-        <td>
-          <%= link_to 'Edit', edit_milestone_path(milestone) %>
-          |
-          <%= link_to 'Destroy', milestone, method: :delete,
-            data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render "index", milestones: @milestones %>
