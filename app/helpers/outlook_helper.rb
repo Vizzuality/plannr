@@ -12,6 +12,10 @@ module OutlookHelper
   def status_for project, date
     return nil if project.end_date && project.end_date.end_of_month < date
     next_milestone = project.next_milestone_from(date)
-    next_milestone && next_milestone.milestone_humanize.downcase
+    if next_milestone
+      next_milestone.milestone_humanize.downcase
+    else
+      "close-it-off"
+    end
   end
 end
