@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-td.underway {
-  background-color: lightgreen;
-}
-
 .table > thead > tr > th.current {
   background-color: orange;
   border-right: 2px dashed orange;
@@ -17,6 +13,25 @@ td.underway {
   border-left: 2px dashed orange;
 }
 
-.table > tbody > tr > td.underway {
-  background-color: rgba(144,238,144,1);
+.table > tbody > tr > td.discovery {
+  background-color: #00B1DA;
+}
+
+.table > tbody > tr > td.wireframes {
+  background-color: #5B3018;
+}
+.table > tbody > tr > td.visuals {
+  background-color: #9E5125;
+}
+.table > tbody > tr > td.design {
+  background-color: #DF7032;
+}
+.table > tbody > tr > td.alpha {
+  background-color: #1C4011;
+}
+.table > tbody > tr > td.beta {
+  background-color: #4DCA2B;
+}
+.table > tbody > tr > td.production {
+  background-color: #0D1909;
 }

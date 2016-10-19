@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20160927131601) do
     t.integer  "project_id"
     t.integer  "report_id"
     t.float    "total_time",   default: 0.0
-    t.json     "breakdown",    default: {}
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.json     "breakdown",    default: "{}"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "project_name"
   end
 

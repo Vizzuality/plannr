@@ -43,7 +43,7 @@
         <td><%= project.project_manager&.display_name %></td>
         <td><%= project.team&.name %></td>
         <% @range_of_months.each do |dt| %>
-          <td class="<%= "underway" if project.status_for(dt) %> <%= "current" if dt == current_month %>">
+          <%= table_cell_for project, dt, current_month do %>
             <% if milestones = project.milestones.
                 select{|m| m.release_date&.year == dt.year && m.release_date&.month == dt.month} %>
               <% milestones.each do |m| %>
@@ -60,7 +60,7 @@
                    title="<%= i.name %> - <%= number_to_currency(i.value) %> on <%= l i.planned_date %>"></span>
               <% end %>
             <% end %>
-          </td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

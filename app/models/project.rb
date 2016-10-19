@@ -16,13 +16,10 @@ class Project < ApplicationRecord
   scope :for_team, -> (team_id) { where(team_id: team_id) }
   scope :managed_by, -> (project_manager_id) { where(project_manager_id: project_manager_id) }
 
-  def status_for date
-    return nil unless start_date
-    return "underway" if !end_date && start_date <= date
-
-    if start_date.beginning_of_month <= date && end_date.end_of_month >= date
-      "underway"
-    end
+  def next_milestone_from date
+    return nil unless milestones.any?
+    milestones.where("release_date >= ?", date).order("release_date ASC").
+      first
   end
 
   def self.filtered filters
