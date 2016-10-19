@@ -29,7 +29,8 @@ class OutlookController < ApplicationController
     end
 
     def index_filters
-      params[:project_manager_id] = current_user.id if !params[:project_manager_id] && current_user.can_manage_projects?
+      params[:project_manager_id] = current_user.id if !params[:project_manager_id] &&
+        current_user.can_manage_projects? && current_user.active_projects.any?
       params[:team_id] = current_user.active_teams.first.id if !params[:team_id] && current_user.active_teams.any?
       params.permit(:team_id, :project_manager_id)
     end

@@ -2,7 +2,9 @@ class User < ApplicationRecord
   has_enumeration_for :role, with: Roles
   has_secure_password
 
-  has_many :projects
+  has_many :projects, foreign_key: :project_manager_id
+  has_many :active_projects, -> { where("projects.archived = false") },
+    class_name: "Project", foreign_key: :project_manager_id
   has_many :rosters
   has_many :teams, through: :rosters
   has_many :active_teams, -> { where("teams.active = true") }, through: :rosters,
