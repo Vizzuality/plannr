@@ -18,8 +18,7 @@ class Project < ApplicationRecord
 
   def next_milestone_from date
     return nil unless milestones.any?
-    milestones.where("release_date >= ?", date).order("release_date ASC").
-      first
+    milestones.where("release_date >= ?", date).order("release_date ASC").first
   end
 
   def self.filtered filters

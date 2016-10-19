@@ -23,6 +23,8 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
+<hr>
+
 <h3>Teams</h3>
 
 <ul>
@@ -33,3 +35,10 @@
     </li>
   <% end %>
 </ul>
+
+<hr>
+
+<h3>Projects</h3>
+
+<%= render "projects/index", projects: @user.active_projects %>
+

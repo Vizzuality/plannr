@@ -28,7 +28,7 @@
 <ul>
   <% @team.users.order(:name).each do |user| %>
     <li>
-      <%= link_to user.name, user %>, <%= user.title || "N/A" %>, <%= user.role_humanize %>
+      <%= link_to user.name, user %><%= ", #{user.title}" if user.title.present?%><%= ", #{user.role_humanize}" if user.role %>
     </li>
   <% end %>
 </ul>
