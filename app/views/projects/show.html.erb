@@ -54,5 +54,6 @@
 <hr>
 
 <h2>Milestones</h2>
-  <%= render "milestones/index",
-    milestones: @project.milestones.order("release_date DESC") %>
+<p><%= link_to "Add", new_project_milestone_path(@project) %></p>
+<%= render "milestones/index",
+  milestones: @project.milestones.order("release_date DESC") %>
