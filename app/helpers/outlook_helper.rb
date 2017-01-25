@@ -1,7 +1,7 @@
 module OutlookHelper
   def table_cell_for project, date, current_month, &block
     classes = []
-    classes << "current" if date == current_month
+    classes << "current" if current_month
     title = project.start_date && status_for(project, date)
     classes << title
     content_tag(:td, title: title, class: classes.join(" ")) do
