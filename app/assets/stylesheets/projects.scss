@@ -8,6 +8,10 @@
   border-left: 2px dashed orange;
 }
 
+.table > thead > tr > th.dates {
+  font-size: 9px;
+}
+
 .table > tbody > tr > td.current {
   border-right: 2px dashed orange;
   border-left: 2px dashed orange;
@@ -40,6 +44,6 @@
   background-color: #fff176;
 }
 
-.outlook-table tr:hover {
+.outlook-table tbody tr:hover {
   text-decoration: underline;
 }

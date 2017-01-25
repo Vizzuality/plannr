@@ -25,12 +25,12 @@
       <th>Name</th>
       <th>PM</th>
       <th>Team</th>
-      <% today = Date.today %>
+      <% this_week = Date.today.beginning_of_week %>
       <% current_month = nil %>
       <% @range_of_months.each do |r| %>
-        <% current_month = r if r.month == today.month && r.year == today.year %>
-        <th class="<%= "current" if r == current_month %>">
-          <%= r.strftime("%b/%y") %>
+        <% current_date = r == this_week %>
+        <th class="dates <%= "current" if current_date %>" title="Week of Monday <%= r.strftime("%d/%b/%y") %>">
+          <%= r.strftime("%d/%m/%y") %>
         </th>
       <% end %>
     </tr>
@@ -45,7 +45,7 @@
         <% @range_of_months.each do |dt| %>
           <%= table_cell_for project, dt, current_month do %>
             <% if milestones = project.milestones.
-                select{|m| m.release_date&.year == dt.year && m.release_date&.month == dt.month} %>
+                select{|m| m.release_date.beginning_of_week == dt} %>
               <% milestones.each do |m| %>
                 <span class="glyphicon glyphicon-time" aria-hidden="true"
                    data-toggle="tooltip"
