@@ -53,7 +53,7 @@
               <% end %>
             <% end %>
             <% if invoices = project.invoices.
-                select{|i| i.planned_date&.month == dt.month && i.planned_date&.year == dt.year } %>
+                select{|i| i.planned_date && i.planned_date.beginning_of_month == dt } %>
               <% invoices.each do |i| %>
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"
                    data-toggle="tooltip"
