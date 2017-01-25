@@ -1,6 +1,6 @@
 class MilestonesController < ApplicationController
   before_action :set_milestone, only: [:edit, :update, :destroy]
-  before_action :set_project, only: [:new, :edit, :create]
+  before_action :set_project, only: [:new, :edit, :create, :update]
 
 
   # GET /milestones
