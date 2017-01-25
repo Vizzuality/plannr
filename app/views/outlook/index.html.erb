@@ -30,7 +30,7 @@
       <% @range_of_months.each do |r| %>
         <% current_date = r == this_week %>
         <th class="dates <%= "current" if current_date %>" title="Week of Monday <%= r.strftime("%d/%b/%y") %>">
-          <%= r.strftime("%d/%m/%y") %>
+          W<%= r.strftime("%U") %>
         </th>
       <% end %>
     </tr>
