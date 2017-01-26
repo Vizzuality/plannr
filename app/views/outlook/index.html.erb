@@ -22,6 +22,7 @@
 <table class="table table-bordered table-condensed outlook-table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>PM</th>
       <th>Team</th>
@@ -37,8 +38,11 @@
   </thead>
 
   <tbody>
+    <% i = 1 %>
     <% @projects.each do |project| %>
       <tr>
+        <td><%= i %></td>
+        <% i += 1 %>
         <td><%= link_to project.name, project %></td>
         <td><%= project.project_manager&.display_name %></td>
         <td><%= project.team&.name %></td>
