@@ -6,6 +6,7 @@
       <th>PM</th>
       <th>Team</th>
       <th>Client</th>
+      <th>Stage</th>
       <th>Start date</th>
       <th>End date</th>
       <th>Milestones</th>
@@ -33,6 +34,9 @@
           <% if project.client %>
             <%= tooltiped_span(project.client.name, link_to((project.client.short_name || project.client.name), project.client)) %>
           <% end %>
+        </td>
+        <td>
+          <%= project.live? ? "Live" : "BDev" %>
         </td>
         <td><%= l project.start_date if project.start_date %></td>
         <td><%= l project.end_date if project.end_date %></td>

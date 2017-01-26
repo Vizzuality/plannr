@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Stage:</strong>
+  <%= @project.live? ? "Project is live" : "In Business Development" %>
+</p>
+
+<p>
   <strong>Project Manager:</strong>
   <%= link_to(@project.project_manager.name,
               @project.project_manager) if @project.project_manager %>

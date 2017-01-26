@@ -19,29 +19,125 @@
 
 .table > tbody > tr > td.discovery {
   background-color: #d1c4e9;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #d1c4e9,
+      #d1c4e9 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 
 .table > tbody > tr > td.wireframes {
   background-color: #bbdefb;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #bbdefb,
+      #bbdefb 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 .table > tbody > tr > td.visuals {
   background-color: #90caf9;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #90caf9,
+      #90caf9 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 .table > tbody > tr > td.design {
   background-color: #64b5f6;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #64b5f6,
+      #64b5f6 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 .table > tbody > tr > td.alpha {
   background-color: #dcedc8;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #dcedc8,
+      #dcedc8 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 .table > tbody > tr > td.beta {
   background-color: #c5e1a5;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #c5e1a5,
+      #c5e1a5 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 .table > tbody > tr > td.production {
   background-color: #aed581;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #aed581,
+      #aed581 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 
 .table > tbody > tr > td.close-it-off {
   background-color: #fff176;
+  &.bdev {
+    background: linear-gradient(
+      to bottom,
+      #fff176,
+      #fff176 50%,
+      #fff 50%,
+      #fff
+    );
+    /* The rectangle in which to repeat.
+     *    It can be fully wide in this case */
+    background-size: 100% 20px;
+  }
 }
 
 .outlook-table tbody tr:hover {
