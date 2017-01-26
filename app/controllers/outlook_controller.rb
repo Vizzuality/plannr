@@ -2,8 +2,8 @@ class OutlookController < ApplicationController
   before_action :set_teams_and_project_managers, only: [:index]
 
   def index
-    @interval = [1.months.ago.beginning_of_month.to_date,
-                 4.months.from_now.end_of_month.to_date]
+    @interval = [2.weeks.ago.beginning_of_week.to_date,
+                 6.months.from_now.beginning_of_week.to_date]
     @range_of_months = range_of_months(@interval)
     @projects = Project.order(:name).
       where.not(start_date: nil, end_date: nil).

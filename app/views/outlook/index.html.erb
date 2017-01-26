@@ -28,9 +28,15 @@
       <th>Team</th>
       <% this_week = Date.today.beginning_of_week %>
       <% current_date = nil %>
+      <% month = @range_of_months.first.month %>
+      <% month_nr = 1 %>
       <% @range_of_months.each do |r| %>
         <% current_date = r == this_week %>
-        <th class="dates <%= "current" if current_date %>" title="Week of Monday <%= r.strftime("%d/%b/%y") %>">
+        <% if r.month != month
+             month_nr += 1
+             month = r.month
+        end %>
+        <th class="dates <%= "current" if current_date %> month-<%= month_nr %>" title="Week of Monday <%= r.strftime("%d/%b/%y") %>">
           W<%= r.strftime("%U") %>
         </th>
       <% end %>

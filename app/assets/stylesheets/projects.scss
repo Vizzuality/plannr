@@ -10,6 +10,27 @@
 
 .table > thead > tr > th.dates {
   font-size: 9px;
+  &.month-1 {
+    background-color: #5efc8d;
+  }
+  &.month-2 {
+    background-color: #8ef9f3;
+  }
+  &.month-3 {
+    background-color: #82a3a1;
+  }
+  &.month-4 {
+    background-color: #93bedf;
+  }
+  &.month-5 {
+    background-color: #6d5a72;
+  }
+  &.month-6 {
+    background-color: #f5edf0;
+  }
+  &.month-7 {
+    background-color: #d1ccdc;
+  }
 }
 
 .table > tbody > tr > td.current {
