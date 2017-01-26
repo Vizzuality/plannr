@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927131601) do
+ActiveRecord::Schema.define(version: 20170126080015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20160927131601) do
     t.integer  "project_id"
     t.integer  "report_id"
     t.float    "total_time",   default: 0.0
-    t.json     "breakdown",    default: "{}"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.json     "breakdown",    default: {}
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "project_name"
   end
 
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160927131601) do
     t.integer  "team_id"
     t.integer  "client_id"
     t.string   "intranet_url"
+    t.boolean  "live",               default: false
   end
 
   create_table "reports", force: :cascade do |t|
